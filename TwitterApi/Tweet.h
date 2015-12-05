@@ -2,7 +2,7 @@
 //  Tweet.h
 //  TwitterApi
 //
-//  Created by Sergii on 30.11.15.
+//  Created by Sergii Sinkevych on 30.11.15.
 //  Copyright © 2015 Sergii Sinkevych. All rights reserved.
 //
 

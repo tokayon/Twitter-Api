@@ -2,7 +2,7 @@
 //  TweetsController.m
 //  TwitterApi
 //
-//  Created by Sergii on 29.11.15.
+//  Created by Sergii Sinkevych on 29.11.15.
 //  Copyright © 2015 Sergii Sinkevych. All rights reserved.
 //
 

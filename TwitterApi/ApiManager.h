@@ -2,7 +2,7 @@
 //  ApiManager.h
 //  TwitterApi
 //
-//  Created by Sergii on 01.12.15.
+//  Created by Sergii Sinkevych on 01.12.15.
 //  Copyright © 2015 Sergii Sinkevych. All rights reserved.
 //
 

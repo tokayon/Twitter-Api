@@ -2,20 +2,13 @@
 //  ApiManager.m
 //  TwitterApi
 //
-//  Created by Sergii on 01.12.15.
+//  Created by Sergii Sinkevych on 01.12.15.
 //  Copyright © 2015 Sergii Sinkevych. All rights reserved.
 //
 
 #import "ApiManager.h"
 #import "AppDelegate.h"
 #import "Tweet.h"
-
-/////////////////////////// ENTER YOUR API KEY AND SECRET HERE ////////////////////////
-static NSString *apiKey =      @"dEYSM9Vfnu3VvX6trp3R1aog9";
-static NSString *apiSecret =   @"2R9z4XofbVuyoGr9AmEkeDxrtcFmHz7xdSREv8qHYgmG7NAAWn";
-///////////////////////////////////////////////////////////////////////////////////////
-
-
 
 @interface ApiManager() <NSURLSessionDataDelegate, NSURLSessionDelegate>
 
