@@ -2,7 +2,7 @@
 //  ViewController.h
 //  TwitterApi
 //
-//  Created by Sergii-Guest on 27.11.15.
+//  Created by Sergii on 27.11.15.
 //  Copyright © 2015 Sergii Sinkevych. All rights reserved.
 //
 

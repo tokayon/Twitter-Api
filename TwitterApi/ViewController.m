@@ -2,26 +2,30 @@
 //  ViewController.m
 //  TwitterApi
 //
-//  Created by Sergii-Guest on 27.11.15.
+//  Created by Sergii on 27.11.15.
 //  Copyright © 2015 Sergii Sinkevych. All rights reserved.
 //
 
 #import "ViewController.h"
+#import "TweetsController.h"
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIButton *button;
+
 @end
 
-@implementation ViewController
+@implementation ViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    TweetsController *vc = segue.destinationViewController;
+    vc.login = self.textField.text;
 }
 
 @end

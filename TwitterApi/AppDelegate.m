@@ -2,11 +2,18 @@
 //  AppDelegate.m
 //  TwitterApi
 //
-//  Created by Sergii-Guest on 27.11.15.
+//  Created by Sergii on 27.11.15.
 //  Copyright © 2015 Sergii Sinkevych. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "ApiManager.h"
+
+/////////////////////////// ENTER YOUR API KEY AND SECRET HERE ////////////////////////
+static NSString *apiKey =      @"uLKQ9DAnPtKyQ8eGN4V4ylNd5";
+static NSString *apiSecret =   @"CGrC0clCrthTpdTLroF2x7TiyqOAjUswW2nL6sypfoFk9l8KUf";
+///////////////////////////////////////////////////////////////////////////////////////
+
 
 @interface AppDelegate ()
 
@@ -16,7 +23,27 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    NSString *lastToken = nil;
+    //NSString *lastToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"];
+    
+    if (lastToken.length > 0) {
+        self.token = lastToken;
+    } else {
+        
+        ApiManager *apiManager = [ApiManager sharedInstance];
+        NSMutableURLRequest *basicRequest = [apiManager createBasicRequestWithApiKey:apiKey
+                                                                           apiSecret:apiSecret];
+        
+        [apiManager getDataWithRequest:basicRequest success:^(NSData *responceData) {
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responceData
+                                                                 options:0 error:nil];
+            NSString *token = dict[@"access_token"];
+            [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"access_token"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error.localizedDescription);
+        }];
+    }
     return YES;
 }
 
