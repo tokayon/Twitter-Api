@@ -18,12 +18,16 @@
 @implementation ApiManager
 
 + (ApiManager *)sharedInstance {
+    
     static dispatch_once_t once;
-    static ApiManager *instance;
+    static ApiManager *sharedInstance;
     dispatch_once(&once, ^{
-        instance = [[ApiManager alloc] init];
+        sharedInstance = [[ApiManager alloc] init];
+        sharedInstance.session = [NSURLSession sessionWithConfiguration:
+                                  [NSURLSessionConfiguration defaultSessionConfiguration]];
     });
-    return instance;
+    return sharedInstance;
+    
 }
 
 - (NSMutableURLRequest *)createBasicRequestWithApiKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret {
@@ -58,8 +62,6 @@
                    success:(void(^)(NSData *responceData))success
                    failure:(void(^)(NSError *error))failure {
     
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    self.session = [NSURLSession sessionWithConfiguration:sessionConfig];
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *taskError) {
         if (!taskError) {
             success(data);
