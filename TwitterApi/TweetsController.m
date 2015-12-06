@@ -60,7 +60,12 @@
     NSObject *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
     if ([json isKindOfClass:[NSDictionary class]]) {
         NSDictionary *dict = (NSDictionary *)json;
-        NSString *reason = [NSString stringWithFormat:@"%@",[dict[@"errors"] valueForKey:@"message"]];
+        NSString *reason = @"Unknown error";
+        if ([dict valueForKey:@"error"] != nil) {
+            reason = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
+        } else if ([dict[@"errors"] valueForKey:@"message"] != nil) {
+            reason = [NSString stringWithFormat:@"%@",[dict[@"errors"] valueForKey:@"message"]];
+        }
         [self showError:nil orReason:reason];
     } else if([json isKindOfClass:[NSArray class]]) {
         if (!jsonError) {

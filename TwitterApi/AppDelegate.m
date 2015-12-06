@@ -23,8 +23,8 @@ static NSString *apiSecret =   @"CGrC0clCrthTpdTLroF2x7TiyqOAjUswW2nL6sypfoFk9l8
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *lastToken = nil;
-    //NSString *lastToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"];
+    
+    NSString *lastToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"];
     
     if (lastToken.length > 0) {
         self.token = lastToken;
@@ -40,6 +40,8 @@ static NSString *apiSecret =   @"CGrC0clCrthTpdTLroF2x7TiyqOAjUswW2nL6sypfoFk9l8
             NSString *token = dict[@"access_token"];
             [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"access_token"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            self.token = token;
+            
         } failure:^(NSError *error) {
             NSLog(@"%@", error.localizedDescription);
         }];
